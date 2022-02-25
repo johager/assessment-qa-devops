@@ -1,0 +1,16 @@
+=== Description ===
+The "Wins"/"Losses" count does not work.
+
+=== Steps To Reproduce ===
+1. Launch app according to the Test Plan.
+2. Play a game until you win.
+
+=== Expected Result ===
+The number of Wins after the win should increase.
+
+=== Actual Result ===
+The number of Losses increases after a win.
+
+=== Environment ===
+OS: macOS 12.2
+Browser: Chrome 98.0.4758.102 (Official Build) (arm64)

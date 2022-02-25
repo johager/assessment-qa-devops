@@ -1,0 +1,19 @@
+=== Overview ===
+Test the functionality of Duel Duo
+
+=== Links ===
+https://ed.devmountain.com/materials/exercises/assessment-qa-devops/
+
+=== Test Criteria ===
+- User can play a game
+  - Select bots
+  - Start game
+- Game keeps track of wins and losses
+- User can play another game
+
+=== Entry Criteria ===
+- Install the app according to the directions in the Link above
+
+=== Exit Criteria ===
+- All high-priority tests have passes
+- Allotted time has been used

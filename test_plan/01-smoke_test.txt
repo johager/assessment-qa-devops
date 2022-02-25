@@ -1,0 +1,22 @@
+=== Description ===
+Verithat a user can play a game (select bots, do combat, and get results).
+
+=== Steps ===
+1. Launch the website according to the steps in the Test Plan.
+2. Click on "Draw" to be presented with bots to choose from.
+3. Click on two "Add to Duo" buttons to select two bots.
+4. Click on "DUEL!" to start the combat.
+5. Observe win/loss status and be presented with "Play again!" option.
+
+=== Expected Results ===
+1. Have a "Draw" button.
+2. See five (5) bot cards, each with a "Add to Duo" button.
+3. Have a "DUEL!" button.
+4. Receive "Dueling..." notification.
+5. See "Wins" and "Losses" count, a "You won!" or "You lost!" notification, and have a "Play again!" button.
+
+=== Activity ===
+--- 2022-02-25 Passed ---
+- James Hager
+- OS: macOS 12.2
+- Browser: Chrome 98.0.4758.102 (Official Build) (arm64)

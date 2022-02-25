@@ -1,0 +1,16 @@
+=== Description ===
+The "See All Bots" button does not work.
+
+=== Steps To Reproduce ===
+1. Launch app according to the Test Plan.
+2. Click on "See All Bots".
+
+=== Expected Result ===
+See all the bots
+
+=== Actual Result ===
+Nothing happens.
+
+=== Environment ===
+OS: macOS 12.2
+Browser: Chrome 98.0.4758.102 (Official Build) (arm64)

@@ -6,6 +6,14 @@ const {shuffleArray} = require('./utils')
 
 app.use(express.json())
 
+require('dotenv').config()
+
+app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+})
+
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.get('/api/robots', (req, res) => {
     try {
         res.status(200).send(botsArr)
@@ -67,7 +75,8 @@ app.get('/api/player', (req, res) => {
     }
 })
 
-const port = process.env.PORT || 3000
+// const port = process.env.PORT || 3000
+const port = process.env.PORT
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
