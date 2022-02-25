@@ -7,3 +7,5 @@ The test plan documents are in the test_plan directory.
 You can visit the site at https://devmountain-02-25-qa-devops.herokuapp.com/
 
 The .env file should have PORT and ROLLBAR_TOKEN.
+
+The (intentional) bugs in the Duel Duo code have not been fixed.
