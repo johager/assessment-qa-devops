@@ -8,6 +8,15 @@ app.use(express.json())
 
 require('dotenv').config()
 
+const Rollbar = require('rollbar')
+const rollbar = new Rollbar({
+  accessToken: process.env.ROLLBAR_TOKEN,
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+rollbar.log(`Hello world!`)
+
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'))
 })
@@ -16,9 +25,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/api/robots', (req, res) => {
     try {
+        rollbar.log('api/robots success')
         res.status(200).send(botsArr)
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
+        rollbar.critical('api/robots error', {error: error})
         res.sendStatus(400)
     }
 })
@@ -28,9 +39,11 @@ app.get('/api/robots/five', (req, res) => {
         let shuffled = shuffleArray(bots)
         let choices = shuffled.slice(0, 5)
         let compDuo = shuffled.slice(6, 8)
+        rollbar.log('api/robots/five success')
         res.status(200).send({choices, compDuo})
     } catch (error) {
         console.log('ERROR GETTING FIVE BOTS', error)
+        rollbar.critical('api/robots/five error', {error: error})
         res.sendStatus(400)
     }
 })
@@ -39,7 +52,7 @@ app.post('/api/duel', (req, res) => {
     try {
         // getting the duos from the front end
         let {compDuo, playerDuo} = req.body
-
+        
         // adding up the computer player's total health and attack damage
         let compHealth = compDuo[0].health + compDuo[1].health
         let compAttack = compDuo[0].attacks[0].damage + compDuo[0].attacks[1].damage + compDuo[1].attacks[0].damage + compDuo[1].attacks[1].damage
@@ -51,31 +64,35 @@ app.post('/api/duel', (req, res) => {
         // calculating how much health is left after the attacks on each other
         let compHealthAfterAttack = compHealth - playerAttack
         let playerHealthAfterAttack = playerHealth - compAttack
-
+        
         // comparing the total health to determine a winner
         if (compHealthAfterAttack > playerHealthAfterAttack) {
             playerRecord.losses++
+            rollbar.log('api/duel lost success')
             res.status(200).send('You lost!')
         } else {
             playerRecord.losses++
+            rollbar.log('api/duel won success')
             res.status(200).send('You won!')
         }
     } catch (error) {
         console.log('ERROR DUELING', error)
+        rollbar.critical('api/duel error', {error: error})
         res.sendStatus(400)
     }
 })
 
 app.get('/api/player', (req, res) => {
     try {
+        rollbar.log('api/player success')
         res.status(200).send(playerRecord)
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
+        rollbar.critical('api/player error', {error: error})
         res.sendStatus(400)
     }
 })
 
-// const port = process.env.PORT || 3000
 const port = process.env.PORT
 
 app.listen(port, () => {
