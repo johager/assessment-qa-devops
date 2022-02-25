@@ -12,8 +12,9 @@ describe('shuffleArray should', () => {
         expect(res.length).toBe(arr.length)
     })
     test('returns same items in array', () => {
+        const arrSorted = arr.slice().sort()
         const resSorted = res.slice().sort()
-        const sameElements = arr.every((val, index) => val === resSorted[index])
+        const sameElements = arrSorted.every((val, index) => val === resSorted[index])
         expect(sameElements).toBe(true)
     })
     test('returns shuffled array', () => {
