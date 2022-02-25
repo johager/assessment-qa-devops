@@ -6,7 +6,7 @@ require('chromedriver')
 const driver = new Builder().withCapabilities(Capabilities.chrome()).build()
 
 beforeEach(async () => {
-    driver.get('http://localhost:3000/')
+    await driver.get('http://localhost:3000/')
 })
 
 afterAll(async () => {
@@ -15,10 +15,12 @@ afterAll(async () => {
 
 async function clickDraw() {
     await driver.findElement(By.id('draw')).click()
+    await driver.sleep(500)  // required after adding rollbar
 }
 
 async function clickAddToDuo() {
     await driver.findElement(By.xpath('//*[@class="bot-btn"]')).click()
+    await driver.sleep(500)  // required after adding rollbar
 }
 
 test('Title shows up when page loads', async () => {
