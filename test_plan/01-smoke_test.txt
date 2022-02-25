@@ -1,5 +1,5 @@
 === Description ===
-Verithat a user can play a game (select bots, do combat, and get results).
+Verify that a user can play a game (select bots, do combat, and get results).
 
 === Steps ===
 1. Launch the website according to the steps in the Test Plan.
